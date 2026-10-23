@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://hayu-app.github.io/web-hayu/sitemap.xml
