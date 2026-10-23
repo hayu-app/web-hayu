@@ -6,7 +6,7 @@ const SUPABASE_URL =
   "https://motqsbtyspznvlucsipe.supabase.co";
 
 const SUPABASE_KEY =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1vdHFzYnR5c3B6bnZsdWNzaXBlIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc5MjI2MzA2MCwiZXhwIjoyMTA3ODM5MDYwfQ.Ri6IBetUnjOsEMBZElJJQg1wvV-EOKkCSuv63T0r7bU";
+  "sb_publishable_cJfIMuL0El4p7RxcZkgjUA_uJmz5CWm";
 
 const $ = (id) => document.getElementById(id);
 
