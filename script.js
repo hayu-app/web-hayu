@@ -1,6 +1,6 @@
 // Tempel URL APK langsung milikmu di antara tanda kutip.
 // Contoh format: https://domain-kamu.com/aplikasi.apk
-const APK_URL = "";
+const APK_URL = "https://github.com/hayu-app/web-hayu/releases/download/v1.0.0/app-debug.apk";
 
 document.getElementById("year").textContent = new Date().getFullYear();
 
