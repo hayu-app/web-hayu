@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#090711">
+  <title>Admin Hayu</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .admin-wrap{width:min(600px,calc(100% - 32px));margin:40px auto}
+    .admin-panel{padding:24px;background:#141020;border:1px solid #ffffff20;border-radius:18px}
+    .admin-panel h1{margin-top:0}
+    .admin-form{display:grid;gap:14px}
+    .admin-form label{display:grid;gap:7px;font-size:14px}
+    .admin-form input,.admin-form textarea{box-sizing:border-box;width:100%;padding:12px;border:1px solid #ffffff30;border-radius:9px;background:#090711;color:#fff;font:inherit}
+    .admin-form textarea{min-height:100px}
+    .admin-form button{padding:12px;border:0;border-radius:9px;background:linear-gradient(110deg,#a78bfa,#ee8cff);color:#160c25;font-weight:800;font-size:15px}
+    .admin-status{overflow-wrap:anywhere;min-height:24px}
+    .admin-note{font-size:13px;opacity:.8}
+    .admin-top{display:flex;justify-content:space-between;align-items:center;gap:10px}
+    [hidden]{display:none!important}
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="admin.js" defer></script>
+</head>
+<body>
+  <header class="nav wrap">
+    <a class="brand" href="index.html">
+      <span class="brand-icon">h</span> hayu<span class="dot">.</span>
+    </a>
+    <span class="nav-label">ADMIN PANEL</span>
+  </header>
+
+  <main class="admin-wrap">
+    <section class="admin-panel">
+      <h1>Admin Hayu</h1>
+      <p>Kelola versi dan tautan download APK.</p>
+
+      <form id="login-form" class="admin-form">
+        <label>Email admin
+          <input id="email" type="email" autocomplete="username" required>
+        </label>
+        <label>Password
+          <input id="password" type="password" autocomplete="current-password" required>
+        </label>
+        <button type="submit">Masuk</button>
+      </form>
+
+      <form id="release-form" class="admin-form" hidden>
+        <div class="admin-top">
+          <strong id="signed-in"></strong>
+          <button id="logout" type="button">Keluar</button>
+        </div>
+        <label>Versi APK
+          <input id="version" placeholder="1.0.1" required>
+        </label>
+        <label>URL download APK
+          <input id="download-url" type="url" placeholder="https://..." required>
+        </label>
+        <label>Catatan rilis
+          <textarea id="notes" placeholder="Perubahan versi terbaru"></textarea>
+        </label>
+        <button id="save" type="submit">Simpan rilis</button>
+      </form>
+
+      <p id="status" class="admin-status" role="status"></p>
+      <p class="admin-note">
+        Upload APK ke GitHub Releases terlebih dahulu, lalu tempel URL APK di sini.
+      </p>
+    </section>
+  </main>
+</body>
+</html>
