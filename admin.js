@@ -1,124 +1,210 @@
-// Ganti dua nilai ini dengan Project URL dan Publishable key Supabase.
-const SUPABASE_URL = "TEMPEL_PROJECT_URL_DI_SINI";
-const SUPABASE_KEY = "TEMPEL_PUBLISHABLE_KEY_DI_SINI";
+"use strict";
 
-const statusEl = document.getElementById("status");
-const loginForm = document.getElementById("login-form");
-const releaseForm = document.getElementById("release-form");
-const warning = document.getElementById("config-warning");
+// Gunakan Project URL dan Publishable key.
+// JANGAN gunakan service_role atau secret key di frontend.
+const SUPABASE_URL =
+  "https://motqsbtyspznvlucsipe.supabase.co";
 
-const configured =
-  SUPABASE_URL.startsWith("https://") &&
-  !SUPABASE_URL.includes("https://supabase.com/dashboard/project/motqsbtyspznvlucsipe") &&
-  SUPABASE_KEY &&
-  !SUPABASE_KEY.includes("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1vdHFzYnR5c3B6bnZsdWNzaXBlIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc5MjI2MzA2MCwiZXhwIjoyMTA3ODM5MDYwfQ.Ri6IBetUnjOsEMBZElJJQg1wvV-EOKkCSuv63T0r7bU");
+const SUPABASE_KEY =
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1vdHFzYnR5c3B6bnZsdWNzaXBlIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc5MjI2MzA2MCwiZXhwIjoyMTA3ODM5MDYwfQ.Ri6IBetUnjOsEMBZElJJQg1wvV-EOKkCSuv63T0r7bU";
+
+const $ = (id) => document.getElementById(id);
+
+const statusEl = $("status");
+const loginSection = $("login-section");
+const loginForm = $("login-form");
+const panel = $("panel");
+const releaseForm = $("release-form");
+const loginButton = $("login-button");
+const saveButton = $("save-button");
 
 let client = null;
-
-if (!configured) {
-  warning.hidden = false;
-  warning.textContent =
-    "Isi SUPABASE_URL dan SUPABASE_KEY di admin.js sebelum digunakan.";
-  loginForm.hidden = true;
-} else if (!window.supabase) {
-  warning.hidden = false;
-  warning.textContent = "Library Supabase gagal dimuat. Periksa koneksi internet.";
-  loginForm.hidden = true;
-} else {
-  client = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
-}
+let loadingRelease = false;
 
 function showStatus(message) {
   statusEl.textContent = message;
 }
 
+function setSignedIn(signedIn) {
+  loginSection.hidden = signedIn;
+  panel.hidden = !signedIn;
+}
+
+function validConfig() {
+  return /^https:\/\/[a-z0-9-]+\.supabase\.co$/i.test(SUPABASE_URL) &&
+    /^sb_publishable_[A-Za-z0-9_-]+$/.test(SUPABASE_KEY);
+}
+
 async function loadRelease() {
-  const { data, error } = await client
-    .from("app_release")
-    .select("version,download_url,notes")
-    .eq("id", 1)
-    .single();
+  if (!client || loadingRelease) return;
 
-  if (error) {
-    showStatus("Gagal membaca data rilis: " + error.message);
-    return;
+  loadingRelease = true;
+  showStatus("Memuat informasi rilis...");
+
+  try {
+    const { data, error } = await client
+      .from("app_release")
+      .select("version, download_url, storage_path, notes")
+      .eq("id", 1)
+      .single();
+
+    if (error) throw error;
+
+    $("version").value = data.version ?? "";
+    $("download_url").value = data.download_url ?? "";
+    $("storage_path").value = data.storage_path ?? "";
+    $("notes").value = data.notes ?? "";
+
+    showStatus("Informasi rilis berhasil dimuat.");
+  } catch (error) {
+    showStatus("Gagal memuat rilis: " + error.message);
+  } finally {
+    loadingRelease = false;
   }
-
-  document.getElementById("version").value = data.version || "";
-  document.getElementById("download-url").value = data.download_url || "";
-  document.getElementById("notes").value = data.notes || "";
 }
 
-async function showSession(session) {
-  const signedIn = Boolean(session);
-  loginForm.hidden = signedIn;
-  releaseForm.hidden = !signedIn;
+async function checkSession() {
+  try {
+    const { data, error } = await client.auth.getSession();
 
-  if (signedIn) {
-    document.getElementById("signed-in").textContent =
-      session.user.email || "Admin";
-    await loadRelease();
+    if (error) throw error;
+
+    const signedIn = Boolean(data.session);
+    setSignedIn(signedIn);
+
+    if (signedIn) {
+      await loadRelease();
+    } else {
+      showStatus("Silakan masuk dengan akun admin.");
+    }
+  } catch (error) {
+    setSignedIn(false);
+    showStatus("Gagal memeriksa sesi: " + error.message);
   }
 }
 
-if (client) {
-  client.auth.onAuthStateChange((_event, session) => {
-    setTimeout(() => showSession(session), 0);
+if (!validConfig()) {
+  setSignedIn(false);
+  loginButton.disabled = true;
+  showStatus(
+    "Konfigurasi belum lengkap. Isi Publishable key Supabase " +
+    "yang diawali sb_publishable_. Jangan gunakan secret/service_role key."
+  );
+} else if (!window.supabase?.createClient) {
+  setSignedIn(false);
+  loginButton.disabled = true;
+  showStatus(
+    "Library Supabase gagal dimuat. Periksa koneksi internet lalu muat ulang."
+  );
+} else {
+  client = window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+  );
+
+  loginForm.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    loginButton.disabled = true;
+    showStatus("Sedang masuk...");
+
+    try {
+      const { error } = await client.auth.signInWithPassword({
+        email: $("email").value.trim(),
+        password: $("password").value
+      });
+
+      if (error) throw error;
+
+      loginForm.reset();
+      setSignedIn(true);
+      await loadRelease();
+    } catch (error) {
+      showStatus("Login gagal: " + error.message);
+    } finally {
+      loginButton.disabled = false;
+    }
   });
 
-  client.auth.getSession().then(({ data }) => showSession(data.session));
-}
+  $("logout").addEventListener("click", async () => {
+    const { error } = await client.auth.signOut();
 
-loginForm.addEventListener("submit", async (event) => {
-  event.preventDefault();
-  if (!client) return;
+    if (error) {
+      showStatus("Gagal keluar: " + error.message);
+      return;
+    }
 
-  showStatus("Sedang login...");
-  const { error } = await client.auth.signInWithPassword({
-    email: document.getElementById("email").value.trim(),
-    password: document.getElementById("password").value
+    setSignedIn(false);
+    showStatus("Kamu sudah keluar.");
   });
 
-  showStatus(error ? "Login gagal: " + error.message : "Login berhasil.");
-});
+  releaseForm.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    saveButton.disabled = true;
+    showStatus("Menyimpan perubahan...");
 
-document.getElementById("logout").addEventListener("click", async () => {
-  if (!client) return;
-  const { error } = await client.auth.signOut();
-  showStatus(error ? "Gagal logout: " + error.message : "Kamu sudah logout.");
-});
+    try {
+      const { data: sessionData, error: sessionError } =
+        await client.auth.getSession();
 
-releaseForm.addEventListener("submit", async (event) => {
-  event.preventDefault();
-  if (!client) return;
+      if (sessionError) throw sessionError;
 
-  const version = document.getElementById("version").value.trim();
-  const downloadUrl = document.getElementById("download-url").value.trim();
-  const notes = document.getElementById("notes").value.trim();
+      if (!sessionData.session) {
+        setSignedIn(false);
+        throw new Error("Sesi berakhir. Silakan masuk kembali.");
+      }
 
-  if (!/^https:\/\/\S+$/i.test(downloadUrl)) {
-    showStatus("URL APK harus menggunakan HTTPS.");
-    return;
-  }
+      const version = $("version").value.trim();
+      const downloadUrl = $("download_url").value.trim();
 
-  const saveButton = document.getElementById("save");
-  saveButton.disabled = true;
-  showStatus("Menyimpan rilis...");
+      if (!version) throw new Error("Versi aplikasi wajib diisi.");
 
-  const { data: authData } = await client.auth.getUser();
-  const { error } = await client
-    .from("app_release")
-    .update({
-      version,
-      download_url: downloadUrl,
-      notes,
-      updated_at: new Date().toISOString(),
-      updated_by: authData.user.id
-    })
-    .eq("id", 1);
+      let parsedUrl;
+      try {
+        parsedUrl = new URL(downloadUrl);
+      } catch {
+        throw new Error("URL unduhan tidak valid.");
+      }
 
-  saveButton.disabled = false;
-  showStatus(error
-    ? "Gagal menyimpan: " + error.message
-    : "Rilis berhasil disimpan.");
-});
+      if (parsedUrl.protocol !== "https:") {
+        throw new Error("URL unduhan harus menggunakan HTTPS.");
+      }
+
+      const { data, error } = await client
+        .from("app_release")
+        .update({
+          version,
+          download_url: downloadUrl,
+          storage_path: $("storage_path").value.trim() || null,
+          notes: $("notes").value.trim(),
+          updated_at: new Date().toISOString(),
+          updated_by: sessionData.session.user.id
+        })
+        .eq("id", 1)
+        .select("id");
+
+      if (error) throw error;
+
+      if (!data || data.length === 0) {
+        throw new Error(
+          "Tidak ada baris yang diperbarui. Periksa kebijakan RLS " +
+          "dan pastikan akunmu terdaftar sebagai admin."
+        );
+      }
+
+      showStatus("Perubahan rilis berhasil disimpan.");
+    } catch (error) {
+      showStatus("Gagal menyimpan: " + error.message);
+    } finally {
+      saveButton.disabled = false;
+    }
+  });
+
+  client.auth.onAuthStateChange((event) => {
+    if (event === "SIGNED_OUT") {
+      setSignedIn(false);
+      showStatus("Kamu sudah keluar.");
+    }
+  });
+
+  checkSession();
+}
