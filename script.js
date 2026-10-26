@@ -72,7 +72,10 @@ document.querySelectorAll("[data-download]").forEach((button) => {
       await loadLatestRelease();
     }
 
-    if (!apkUrl) return;
+    if (!apkUrl) {
+      window.location.href = "https://github.com/hayu-app/web-hayu/releases";
+      return;
+    }
 
     window.location.href = apkUrl;
   });
