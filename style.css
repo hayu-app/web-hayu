@@ -577,3 +577,68 @@ body::before {
 @media(prefers-reduced-motion:reduce) {
   .hero-artwork *, .gift-banner * { animation:none !important; transition:none !important; }
 }
+
+/* HAYU MOBILE NAV FIX */
+@media (max-width: 760px) {
+  .nav {
+    height: auto;
+    min-height: 72px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    column-gap: 10px;
+    row-gap: 12px;
+  }
+
+  .nav .brand {
+    flex: 0 0 auto;
+    font-size: 23px;
+  }
+
+  .nav .nav-download {
+    flex: 0 0 auto;
+    margin-left: auto;
+    padding: 9px 11px;
+    font-size: 11px;
+    white-space: nowrap;
+  }
+
+  .nav .nav-links {
+    order: 3;
+    flex: 1 0 100%;
+    min-width: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px 14px;
+  }
+
+  .nav .nav-links a {
+    font-size: 11px;
+    line-height: 1.4;
+    white-space: nowrap;
+  }
+}
+
+@media (max-width: 380px) {
+  .nav .brand {
+    font-size: 20px;
+    gap: 6px;
+  }
+
+  .nav .nav-download {
+    padding: 8px;
+    font-size: 10px;
+  }
+
+  .nav .nav-links {
+    gap: 9px;
+  }
+
+  .nav .nav-links a {
+    font-size: 10px;
+  }
+}
