@@ -130,3 +130,30 @@ h1 em, .panel-copy h2 em { font-style: normal; background: linear-gradient(100de
   .button-arrow { margin-left: auto; }
   .footer { flex-wrap: wrap; }
 }
+
+
+/* Hayu social-room refresh */
+.nav-download{display:inline-flex;align-items:center;gap:10px;padding:10px 15px;border:1px solid #c7a8ff45;border-radius:12px;color:#f8f5ff;font-size:12px;font-weight:800;background:#a78bfa12;transition:background .2s,transform .2s}
+.nav-download:hover{background:#a78bfa25;transform:translateY(-1px)}
+.nav-download span{color:#d6baff}
+.room-topline{display:flex;align-items:center;justify-content:space-between;color:#bca8dc;font-size:7px;letter-spacing:1.2px;margin:0 0 13px}
+.room-back{font-size:21px;line-height:10px;color:#f7efff}.room-menu{letter-spacing:2px}
+.room-cover{position:relative;overflow:hidden;height:88px;border-radius:14px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;background:linear-gradient(125deg,#452067,#9a4bc1 48%,#e18bb4);border:1px solid #ffffff25}
+.cover-glow{position:absolute;width:120px;height:90px;background:#ffc4ed;filter:blur(40px);opacity:.5}
+.cover-symbol{position:relative;font-size:31px;color:white;text-shadow:0 0 22px #fff}.cover-label{position:relative;font-size:7px;font-weight:800;letter-spacing:3px;color:#fff5ff}
+.room-title-row{display:flex;align-items:center;justify-content:space-between;gap:4px;margin-top:12px}
+.room-title-row h2{font-size:12px;margin:0 0 4px;letter-spacing:-.2px}.room-title-row p{color:#a99abf;font-size:7px;margin:0}
+.live-pill{display:flex;align-items:center;gap:4px;border-radius:8px;padding:5px 6px;background:#f05d9220;color:#ff9fbe;font-size:7px;font-weight:800}
+.live-pill i{width:5px;height:5px;border-radius:50%;background:#ff6b9b;box-shadow:0 0 8px #ff6b9b}
+.room-stats{display:flex;justify-content:space-between;color:#a99abf;font-size:7px;padding:9px 0 11px;border-bottom:1px solid #ffffff12}
+.avatar-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:5px;padding:12px 0 10px}
+.member{display:flex;flex-direction:column;align-items:center;gap:4px;position:relative;min-width:0}
+.avatar{width:33px;height:33px;display:grid;place-items:center;border:2px solid #ffffff50;border-radius:50%;color:white;font-size:12px;font-weight:800;box-shadow:0 4px 12px #0003}
+.avatar-one{background:linear-gradient(145deg,#f4b7a5,#a74876)}.avatar-two{background:linear-gradient(145deg,#9fd8d0,#357e8b)}.avatar-three{background:linear-gradient(145deg,#f5d49a,#b86b43)}.avatar-four{background:linear-gradient(145deg,#b7a5f6,#6351a7)}
+.member b{font-size:7px;color:#f1e8ff}.member small{position:absolute;top:23px;right:4px;display:grid;place-items:center;width:13px;height:13px;border-radius:50%;background:#a779ed;color:white;font-size:8px;border:1px solid #1c1430}
+.room-chat{display:flex;align-items:center;gap:6px;border:1px solid #ffffff12;border-radius:9px;padding:8px;background:#ffffff08;font-size:7px}
+.chat-dot{width:5px;height:5px;flex:0 0 5px;border-radius:50%;background:#8ee2bd}.room-chat b{color:#d9baff;font-size:7px}.room-chat small{color:#c8bed8;font-size:7px}.chat-heart{margin-left:auto;color:#ff8bb6;font-size:11px}
+.room-actions{display:flex;justify-content:space-around;align-items:center;padding-top:11px;color:#c6b2df;font-size:13px}
+.mic-action{display:grid;place-items:center;width:29px;height:29px;margin-top:-5px;border-radius:10px;color:white;background:linear-gradient(140deg,#c58dff,#8344dc);box-shadow:0 4px 15px #9852e966}
+.features .feature{min-height:140px}.download-hint.hint-warning{color:#ffc0cb}
+@media(max-width:760px){.nav-download{padding:9px 11px;font-size:11px}.room-cover{height:82px}.features .feature{min-height:0}}
