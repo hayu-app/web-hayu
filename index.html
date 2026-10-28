@@ -27,6 +27,12 @@
   <div class="ambient ambient-a"></div><div class="ambient ambient-b"></div>
   <header class="nav wrap">
     <a class="brand" href="#top" aria-label="Hayu home"><span class="brand-icon">h</span> hayu<span class="dot">.</span></a>
+    <nav class="nav-links" aria-label="Navigasi utama">
+      <a href="#top">Beranda</a>
+      <a href="#fitur">Fitur</a>
+      <a href="#rooms">Room Populer</a>
+      <a href="#download">Tentang Hayu</a>
+    </nav>
     <a class="nav-download" href="https://github.com/hayu-app/web-hayu/releases" data-download>Download APK <span aria-hidden="true">↗</span></a>
   </header>
   <main id="top">
@@ -35,6 +41,17 @@
         <div class="eyebrow reveal"><span></span> TEMUKAN TEMAN BARU DI HAYU</div>
         <h1 class="reveal delay-1">Suara yang dekat.<br><em>Cerita yang hangat.</em></h1>
         <p class="description reveal delay-2">Masuk ke suasana obrolan yang seru, temui teman baru, dan nikmati momen bersama komunitas. Mulai cerita berikutnya lewat Hayu Voice Chat.</p>
+        <!-- HAYU_HERO_SOCIAL_REDESIGN_V1 -->
+        <div class="hero-community reveal delay-2" aria-label="Suasana komunitas Hayu">
+          <div class="community-avatars" aria-hidden="true">
+            <span class="community-avatar ca-one">A</span>
+            <span class="community-avatar ca-two">N</span>
+            <span class="community-avatar ca-three">R</span>
+            <span class="community-avatar ca-four">+</span>
+          </div>
+          <div class="community-copy"><strong>Temukan room-mu</strong><span>Obrolan, teman, cerita baru</span></div>
+          <span class="community-spark" aria-hidden="true">✦</span>
+        </div>
         <a class="download-btn reveal delay-3" href="https://github.com/hayu-app/web-hayu/releases" data-download>
           <span class="download-symbol" aria-hidden="true">↓</span>
           <span class="button-copy"><strong>Download Hayu</strong><small>APLIKASI ANDROID</small></span>
@@ -42,39 +59,109 @@
         </a>
         <p class="microcopy reveal delay-3">✦ &nbsp; Temukan room-mu. Mulai ceritamu.</p>
       </div>
-      <div class="visual reveal delay-2" aria-label="Ilustrasi room obrolan Hayu">
-        <div class="orbit orbit-1"></div><div class="orbit orbit-2"></div><div class="visual-glow"></div>
-        <span class="spark spark-1" aria-hidden="true">✦</span><span class="spark spark-2" aria-hidden="true">✧</span><span class="spark spark-3" aria-hidden="true">✦</span>
-        <div class="phone"><div class="phone-screen">
-          <div class="island"></div><div class="status"><span>9:41</span><span aria-hidden="true">● ▰ ▴</span></div>
-          <div class="room-topline"><span class="room-back" aria-hidden="true">‹</span><span>HAYU VOICE ROOM</span><span class="room-menu" aria-hidden="true">•••</span></div>
-          <div class="room-cover"><div class="cover-glow"></div><span class="cover-symbol" aria-hidden="true">♫</span><span class="cover-label">NIGHT VIBES</span></div>
-          <div class="room-title-row"><div><h2>Tempat Cerita</h2><p>Ngobrol santai bareng teman</p></div><span class="live-pill"><i></i> LIVE</span></div>
-          <div class="room-stats"><span>◉ 128 pendengar</span><span>♡ 2,4k</span></div>
-          <div class="avatar-grid" aria-label="Avatar peserta room">
-            <div class="member"><span class="avatar avatar-one">A</span><b>Alin</b><small>♫</small></div>
-            <div class="member"><span class="avatar avatar-two">R</span><b>Raka</b><small>♫</small></div>
-            <div class="member"><span class="avatar avatar-three">N</span><b>Naya</b><small>♫</small></div>
-            <div class="member"><span class="avatar avatar-four">D</span><b>Dio</b><small>♫</small></div>
-          </div>
-          <div class="room-chat"><span class="chat-dot"></span><span><b>naya</b> <small>Hai semua! 👋</small></span><span class="chat-heart">♥</span></div>
-          <div class="room-actions"><span>♡</span><span>☰</span><span class="mic-action">♫</span><span>♙</span></div>
-        </div></div>
-        <div class="float-card float-top"><span aria-hidden="true">✦</span><div><b>Temukan komunitas</b><small>Mulai obrolan baru</small></div></div>
-        <div class="float-card float-bottom"><span class="pulse"></span><div><b>Room sedang ramai</b><small>Suasana penuh cerita</small></div></div>
+      <div class="visual hero-artwork reveal delay-2">
+        <img src="assets/hayu-hero-visual.jpg"
+             alt="Ilustrasi Hayu Voice Chat dengan room aktif, avatar, dan gift virtual"
+             fetchpriority="high">
       </div>
     </section>
-    <section class="features wrap" aria-label="Tentang Hayu">
+    <section class="features wrap" id="fitur" aria-label="Fitur Hayu">
       <article class="feature reveal"><span class="feature-icon" aria-hidden="true">◉</span><div><h2>Room Obrolan Suara</h2><p>Temukan ruang obrolan untuk menghabiskan waktu dan berbagi cerita bersama komunitas.</p></div></article>
       <article class="feature reveal delay-1"><span class="feature-icon" aria-hidden="true">♡</span><div><h2>Teman dan Komunitas</h2><p>Jelajahi suasana sosial yang menyenangkan dan temukan orang untuk diajak mengobrol.</p></div></article>
       <article class="feature reveal delay-2"><span class="feature-icon" aria-hidden="true">✧</span><div><h2>Momen Lebih Berkesan</h2><p>Nikmati pengalaman sosial Hayu dan jelajahi fitur yang tersedia di aplikasi.</p></div></article>
     </section>
-    <section class="download-section wrap reveal" id="download">
-      <div class="download-panel"><div class="panel-glow"></div>
-        <div class="panel-copy"><span class="panel-kicker">CERITAMU DIMULAI DI SINI</span><h2>Yuk, gabung di <em>Hayu.</em></h2><p>Unduh aplikasi Hayu untuk Android dan mulai jelajahi obrolan room.</p></div>
-        <a class="download-btn panel-button" href="https://github.com/hayu-app/web-hayu/releases" data-download><span class="download-symbol" aria-hidden="true">↓</span><span class="button-copy"><strong>Download APK</strong><small>HAYU UNTUK ANDROID</small></span><span class="button-arrow" aria-hidden="true">↗</span></a>
+    <!-- HAYU_POPULAR_ROOMS_V1 -->
+    <section id="rooms" class="popular-rooms wrap" aria-labelledby="popular-title">
+      <div class="popular-heading">
+        <div>
+          <span class="panel-kicker">ROOM POPULER</span>
+          <h2 id="popular-title">Room yang sedang ramai</h2>
+          <p>Jangan lewatkan keseruan di room favorit. Dengarkan, ngobrol, dan jadi bagian dari komunitas.</p>
+        </div>
+        <span class="room-heading-note">✦ Banyak cerita, satu komunitas</span>
       </div>
-      <p class="download-hint" id="download-hint" role="status" aria-live="polite">Memeriksa informasi versi terbaru…</p>
+
+      <div class="popular-room-grid">
+        <article class="popular-room-card">
+          <div class="popular-cover cover-night"><span class="live-label"><i></i> LIVE</span><span class="cover-art" aria-hidden="true"></span></div>
+          <div class="popular-card-body">
+            <h3>Tempat Cerita</h3><p>Ngobrol santai bareng teman</p>
+            <div class="popular-stats"><span>♟ 128 pendengar</span><span>♥ 2,4k</span></div>
+            <div class="popular-avatars"><i>A</i><i>N</i><i>R</i><i>D</i><i>+4</i></div>
+            <div class="popular-gift"><svg class="gift-label-icon" viewBox="0 0 24 24" aria-hidden="true">
+  <path d="m3 7 5 4 4-7 4 7 5-4-2 12H5L3 7Z"
+  fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+  <path d="M6 22h12" fill="none" stroke="currentColor" stroke-width="1.8"/>
+</svg><span>Gift terfavorit</span></div>
+            <div class="popular-host"><span class="host-mini">N</span><span>Naya <b>♛</b></span><span class="host-note">HOST</span></div>
+          </div>
+        </article>
+
+        <article class="popular-room-card">
+          <div class="popular-cover cover-chill"><span class="live-label"><i></i> LIVE</span><span class="cover-art" aria-hidden="true"></span></div>
+          <div class="popular-card-body">
+            <h3>Music &amp; Chill</h3><p>Dengerin musik bareng yuk!</p>
+            <div class="popular-stats"><span>♟ 96 pendengar</span><span>♥ 1,8k</span></div>
+            <div class="popular-avatars"><i>R</i><i>K</i><i>M</i><i>A</i><i>+3</i></div>
+            <div class="popular-gift"><svg class="gift-label-icon" viewBox="0 0 24 24" aria-hidden="true">
+  <path d="M3 10h18v11H3zM2 6h20v4H2zM12 6v15M12 6H8.5a2.5 2.5 0 1 1 2.5-2.5V6Zm0 0h3.5A2.5 2.5 0 1 0 13 3.5V6Z"
+  fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+</svg><span>Gift terbaru</span></div>
+            <div class="popular-host"><span class="host-mini">R</span><span>Raka <b>♛</b></span><span class="host-note">HOST</span></div>
+          </div>
+        </article>
+
+        <article class="popular-room-card">
+          <div class="popular-cover cover-city"><span class="live-label"><i></i> LIVE</span><span class="cover-art" aria-hidden="true"></span></div>
+          <div class="popular-card-body">
+            <h3>Curhat Yuk</h3><p>Semua masalah ada solusinya</p>
+            <div class="popular-stats"><span>♟ 203 pendengar</span><span>♥ 3,7k</span></div>
+            <div class="popular-avatars"><i>D</i><i>N</i><i>F</i><i>R</i><i>+8</i></div>
+            <div class="popular-gift"><svg class="gift-label-icon" viewBox="0 0 24 24" aria-hidden="true">
+  <path d="m3 7 5 4 4-7 4 7 5-4-2 12H5L3 7Z"
+  fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+  <path d="M6 22h12" fill="none" stroke="currentColor" stroke-width="1.8"/>
+</svg><span>Gift terfavorit</span></div>
+            <div class="popular-host"><span class="host-mini">D</span><span>Dio <b>♛</b></span><span class="host-note">HOST</span></div>
+          </div>
+        </article>
+
+        <article class="popular-room-card">
+          <div class="popular-cover cover-game"><span class="live-label"><i></i> LIVE</span><span class="cover-art" aria-hidden="true"></span></div>
+          <div class="popular-card-body">
+            <h3>Gaming Together</h3><p>Main bareng, makin seru!</p>
+            <div class="popular-stats"><span>♟ 76 pendengar</span><span>♥ 1,2k</span></div>
+            <div class="popular-avatars"><i>K</i><i>A</i><i>N</i><i>R</i><i>+2</i></div>
+            <div class="popular-gift"><svg class="gift-label-icon" viewBox="0 0 24 24" aria-hidden="true">
+  <path d="M3 10h18v11H3zM2 6h20v4H2zM12 6v15M12 6H8.5a2.5 2.5 0 1 1 2.5-2.5V6Zm0 0h3.5A2.5 2.5 0 1 0 13 3.5V6Z"
+  fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+</svg><span>Gift terbaru</span></div>
+            <div class="popular-host"><span class="host-mini">A</span><span>Alin <b>♛</b></span><span class="host-note">HOST</span></div>
+          </div>
+        </article>
+      </div>
+      <p class="popular-disclaimer">Contoh tampilan room untuk promosi, bukan data aktivitas langsung.</p>
+    </section>
+
+    <section class="download-section wrap reveal" id="download">
+      <div class="gift-banner">
+        <div class="gift-banner-copy">
+          <span class="panel-kicker">YUK, GABUNG SEKARANG</span>
+          <h2>Jelajahi lebih banyak <em>room dan teman baru.</em></h2>
+          <p>Download Hayu sekarang dan rasakan pengalaman voice chat terbaik di genggamanmu.</p>
+          <a class="download-btn gift-banner-button" href="https://github.com/hayu-app/web-hayu/releases" data-download>
+            <span class="download-symbol" aria-hidden="true">↓</span>
+            <span class="button-copy"><strong>Download APK</strong><small>HAYU UNTUK ANDROID</small></span>
+            <span class="button-arrow" aria-hidden="true">↗</span>
+          </a>
+        </div>
+        <div class="gift-banner-art">
+          <img src="assets/hayu-gift-showcase.jpg"
+               alt="Ilustrasi gift virtual Hayu dengan efek cahaya neon"
+               loading="lazy">
+        </div>
+      </div>
+      <p class="download-hint visually-hidden" id="download-hint" role="status" aria-live="polite">Memeriksa informasi versi terbaru…</p>
     </section>
   </main>
   <footer class="footer wrap">
